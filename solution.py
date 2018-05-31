@@ -5,11 +5,12 @@ from utils import *
 row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')]
-unitlist = row_units + column_units + square_units
+diagonal_one = [r+c for r in rows for c in cols if rows.index(r) == cols.index(c)]
+reverse_cols = cols[::-1]
+diagonal_two = [r+c for r in rows for c in reverse_cols if rows.index(r) == reverse_cols.index(c)]
+diagonal_units = [diagonal_one, diagonal_two]
 
-# TODO: Update the unit list to add the new diagonal units
-unitlist = unitlist
-
+unitlist = row_units + column_units + square_units + diagonal_units
 
 # Must be called after all units (including diagonals) are added to the unitlist
 units = extract_units(unitlist, boxes)
