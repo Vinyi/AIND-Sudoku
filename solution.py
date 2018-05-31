@@ -96,8 +96,17 @@ def only_choice(values):
     -----
     You should be able to complete this function by copying your code from the classroom
     """
-    # TODO: Copy your code from the classroom to complete this function
-    raise NotImplementedError
+    """
+        Go through all the units, and whenever there is a unit with a value that only fits in one box, assign the value to this box.
+        Input: A sudoku in dictionary form.
+        Output: The resulting sudoku in dictionary form.
+        """
+    for unit in unitlist:
+        for digit in '123456789':
+            dplaces = [box for box in unit if digit in values[box]]
+            if len(dplaces) == 1:
+                values[dplaces[0]] = digit
+    return values
 
 
 def reduce_puzzle(values):
